@@ -79,12 +79,12 @@
     <button onclick="setCalendarView('WEEK')">Semanal</button>
   </div>
 
-  <iframe id="calendar" src="https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&mode=MONTH"></iframe>
+  <iframe id="calendar" src="https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&mode=MONTH&wkst=2"></iframe>
 
   <script>
     function setCalendarView(view) {
       const iframe = document.getElementById("calendar");
-      const baseURL = "https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels";
+      const baseURL = "https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&wkst=2";
       iframe.src = `${baseURL}&mode=${view}`;
     }
   </script>
