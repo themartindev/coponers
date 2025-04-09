@@ -1,117 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COPONERS</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+      background: #f0f0f0;
+      color: #333;
     }
 
     header {
-      padding: 1.5rem;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
       text-align: center;
-      background: rgba(0, 0, 0, 0.2);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem 1rem 2rem;
+      position: relative;
+    }
+
+    header img {
+      max-width: 120px;
+      width: 30vw;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
     }
 
     header h1 {
       font-size: 2.5rem;
       letter-spacing: 2px;
-      font-weight: bold;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
     }
 
-    nav {
+    header p {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #e0e0e0;
+    }
+
+    .buttons {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 1rem 0;
+      padding: 1rem;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    button {
-      background-color: white;
-      color: #1e3c72;
-      border: none;
+    .buttons button {
       padding: 0.6rem 1.2rem;
       font-size: 1rem;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      background-color: #2a5298;
+      color: white;
+      transition: background-color 0.3s ease;
     }
 
-    button:hover, button.active {
-      background-color: #f0f0f0;
-    }
-
-    .iframe-container {
-      flex-grow: 1;
-      width: 100%;
+    .buttons button:hover {
+      background-color: #1e3c72;
     }
 
     iframe {
       width: 100%;
-      height: calc(100vh - 150px);
+      height: calc(100vh - 250px);
       border: none;
     }
 
-    @media (max-width: 600px) {
+    @media (min-width: 768px) {
       header h1 {
-        font-size: 1.8rem;
+        font-size: 3rem;
       }
 
-      button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+      header img {
+        max-width: 150px;
+      }
+
+      .buttons {
+        gap: 2rem;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
+    <img src="/img/coponers_logo.jpg" alt="Logo COPONERS" />
     <h1>COPONERS</h1>
+    <p>Rutas, talleres y birras</p>
   </header>
 
-  <nav>
-    <button id="monthBtn" class="active">Vista mensual</button>
-    <button id="weekBtn">Vista semanal</button>
-  </nav>
-
-  <div class="iframe-container">
-    <iframe id="calendarFrame" 
-      src="https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&mode=MONTH">
-    </iframe>
+  <div class="buttons">
+    <button onclick="setCalendarView('MONTH')">Mensual</button>
+    <button onclick="setCalendarView('WEEK')">Semanal</button>
   </div>
 
+  <iframe id="calendar" src="https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&mode=MONTH"></iframe>
+
   <script>
-    const monthBtn = document.getElementById('monthBtn');
-    const weekBtn = document.getElementById('weekBtn');
-    const frame = document.getElementById('calendarFrame');
-
-    const baseUrl = 'https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels&mode=';
-
-    monthBtn.addEventListener('click', () => {
-      frame.src = baseUrl + 'MONTH';
-      monthBtn.classList.add('active');
-      weekBtn.classList.remove('active');
-    });
-
-    weekBtn.addEventListener('click', () => {
-      frame.src = baseUrl + 'WEEK';
-      weekBtn.classList.add('active');
-      monthBtn.classList.remove('active');
-    });
+    function setCalendarView(view) {
+      const iframe = document.getElementById("calendar");
+      const baseURL = "https://calendar.google.com/calendar/embed?src=9d220a834e0fe6dc1ea06d06d457f45414868b977d12288039bb4f91b0939b9e%40group.calendar.google.com&ctz=Europe%2FBrussels";
+      iframe.src = `${baseURL}&mode=${view}`;
+    }
   </script>
+
 </body>
 </html>
